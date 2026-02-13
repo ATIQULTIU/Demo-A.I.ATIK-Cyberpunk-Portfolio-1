@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.I.ATIK | Software Developer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:'Poppins',sans-serif;
+    background:#02030a;
+    color:#e6fbff;
+    overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+
+/* ===== BOOT SCREEN ===== */
+#boot{
+    position:fixed;
+    inset:0;
+    background:#000;
+    color:#00f6ff;
+    font-family:'Orbitron',monospace;
+    padding:2rem;
+    z-index:9999;
+}
+#boot span{display:block;line-height:1.8}
+
+/* ===== HEADER ===== */
+header{
+    position:fixed;
+    top:0;width:100%;
+    padding:1rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    background:rgba(0,0,30,.7);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(0,246,255,.3);
+    z-index:1000;
+}
+header h1{
+    font-family:'Orbitron',sans-serif;
+    color:#00f6ff;
+    cursor:pointer;
+}
+
+/* ===== HERO ===== */
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:
+        radial-gradient(circle at center, rgba(0,246,255,.15), transparent 60%),
+        repeating-linear-gradient(90deg, rgba(0,246,255,.04) 0 1px, transparent 1px 80px);
+}
+.hero h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:3rem;
+}
+.name-value{
+    color:#ff4cff;
+    border-right:2px solid #ff4cff;
+    padding-right:5px;
+}
+.hero p{margin:1.5rem 0;max-width:600px}
+.btn{
+    padding:.8rem 1.8rem;
+    border-radius:30px;
+    border:1px solid #00f6ff;
+    background:transparent;
+    color:#00f6ff;
+    cursor:pointer;
+    transition:.3s;
+}
+.btn:hover{
+    background:#00f6ff;
+    color:#000;
+    box-shadow:0 0 25px #00f6ff;
+}
+
+/* ===== SECTIONS ===== */
+section{padding:6rem 2rem}
+h2{
+    text-align:center;
+    font-family:'Orbitron',sans-serif;
+    color:#00f6ff;
+    margin-bottom:3rem;
+    text-shadow:0 0 20px rgba(0,246,255,.6);
+}
+
+/* ===== SKILLS ===== */
+.skills{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:2rem;
+}
+.skill{
+    width:220px;
+    padding:1.5rem;
+    background:rgba(0,246,255,.05);
+    border:1px solid rgba(0,246,255,.3);
+    border-radius:15px;
+    transition:.3s;
+}
+.skill:hover{transform:translateY(-10px);box-shadow:0 0 30px #00f6ff}
+.skill-bar{
+    height:10px;
+    background:#03131c;
+    border-radius:10px;
+    overflow:hidden;
+}
+.skill-bar span{
+    display:block;
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,#00f6ff,#ff4cff);
+}
+
+/* ===== PROJECTS (3D HOLOGRAM) ===== */
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:2rem;
+}
+.card{
+    padding:1.5rem;
+    border-radius:18px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(0,246,255,.25);
+    transform-style:preserve-3d;
+    transition:.2s;
+}
+.card:hover{
+    box-shadow:0 0 40px rgba(255,76,255,.6);
+}
+.card h3{
+    font-family:'Orbitron',sans-serif;
+}
+.card .actions{
+    margin-top:1rem;
+    display:flex;
+    gap:1rem;
+}
+.card .actions a{
+    padding:.4rem 1rem;
+    border-radius:20px;
+    border:1px solid #ff4cff;
+    color:#ff4cff;
+}
+.card .actions a:hover{
+    background:#ff4cff;
+    color:#000;
+}
+
+/* ===== CONTACT ===== */
+form{
+    max-width:500px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+}
+input,textarea{
+    padding:1rem;
+    border-radius:10px;
+    background:#030c14;
+    border:1px solid rgba(0,246,255,.3);
+    color:#fff;
+}
+
+/* ===== MATRIX PARTICLES ===== */
+#particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+.p{
+    position:absolute;
+    color:rgba(0,246,255,.4);
+    font-family:'Orbitron',monospace;
+    animation:fall linear infinite;
+}
+@keyframes fall{
+    from{transform:translateY(-10vh)}
+    to{transform:translateY(110vh)}
+}
+
+/* ===== CURSOR ===== */
+.cursor{
+    width:18px;height:18px;
+    border:2px solid #00f6ff;
+    border-radius:50%;
+    position:fixed;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    z-index:9999;
+}
+</style>
+</head>
+
+<body>
+
+<div id="boot"></div>
+<div class="cursor"></div>
+<div id="particles"></div>
+
+<header>
+    <h1 onclick="scrollTo('hero')">A.I.ATIK</h1>
+</header>
+
+<section class="hero" id="hero">
+    <h1>Hello, I'm <span class="name-value"></span></h1>
+    <p> Software Engineer | AI Systems Engineer | Future Tech</p>
+    <button class="btn" onclick="scrollTo('projects')">ENTER SYSTEM</button>
+</section>
+
+<section>
+<h2>CORE SKILLS</h2>
+<div class="skills">
+    <div class="skill" data-p="90"><h3>HTML/CSS</h3><div class="skill-bar"><span></span></div></div>
+    <div class="skill" data-p="85"><h3>JavaScript</h3><div class="skill-bar"><span></span></div></div>
+    <div class="skill" data-p="80"><h3>React</h3><div class="skill-bar"><span></span></div></div>
+    <div class="skill" data-p="75"><h3>Node.js</h3><div class="skill-bar"><span></span></div></div>
+</div>
+</section>
+
+<section id="projects">
+<h2>DEPLOYED MODULES</h2>
+<div class="projects">
+    <div class="card">
+        <h3>AI Portfolio</h3>
+        <p>Neon cyberpunk portfolio system.</p>
+        <div class="actions">
+            <a href="#">GitHub</a>
+            <a href="#">Live</a>
+        </div>
+    </div>
+    <div class="card">
+        <h3>Task Core</h3>
+        <p>Automation & productivity engine.</p>
+        <div class="actions">
+            <a href="#">GitHub</a>
+            <a href="#">Live</a>
+        </div>
+    </div>
+</div>
+</section>
+
+<section>
+<h2>SIGNAL ME</h2>
+<form>
+    <input placeholder="Your ID">
+    <input type="email" placeholder="Signal Address">
+    <textarea rows="4" placeholder="Transmission..."></textarea>
+    <button class="btn">TRANSMIT</button>
+</form>
+</section>
+
+<script>
+/* ===== BOOT ===== */
+const boot=document.getElementById('boot');
+const lines=[
+'Initializing A.I.ATIK...',
+'Loading Neural Modules...',
+'Connecting to Grid...',
+'System Online ✔'
+];
+let b=0;
+function bootSeq(){
+    if(b<lines.length){
+        boot.innerHTML+=`<span>> ${lines[b]}</span>`;
+        b++; setTimeout(bootSeq,600);
+    }else setTimeout(()=>boot.remove(),800);
+}
+bootSeq();
+
+/* ===== TYPE ===== */
+const nameEl=document.querySelector('.name-value');
+const name='MD ATIQUL ISLAM (Atik)';
+let i=0;
+(function type(){
+    if(i<=name.length){
+        nameEl.textContent=name.slice(0,i++);
+        setTimeout(type,120);
+    }
+})();
+
+/* ===== SKILLS ===== */
+document.querySelectorAll('.skill').forEach(s=>{
+    s.querySelector('span').style.width=s.dataset.p+'%';
+});
+
+/* ===== PARTICLES ===== */
+const symbols=['0','1','AI','<>','{}'];
+const pc=document.getElementById('particles');
+for(let i=0;i<80;i++){
+    const d=document.createElement('div');
+    d.className='p';
+    d.textContent=symbols[Math.random()*symbols.length|0];
+    d.style.left=Math.random()*100+'%';
+    d.style.fontSize=10+Math.random()*18+'px';
+    d.style.animationDuration=6+Math.random()*10+'s';
+    pc.appendChild(d);
+}
+
+/* ===== CURSOR ===== */
+const cursor=document.querySelector('.cursor');
+window.addEventListener('mousemove',e=>{
+    cursor.style.left=e.clientX+'px';
+    cursor.style.top=e.clientY+'px';
+});
+
+/* ===== 3D CARD TILT ===== */
+document.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+        const r=card.getBoundingClientRect();
+        const x=e.clientX-r.left;
+        const y=e.clientY-r.top;
+        card.style.transform=`rotateX(${-(y-r.height/2)/15}deg) rotateY(${(x-r.width/2)/15}deg)`;
+    });
+    card.addEventListener('mouseleave',()=>card.style.transform='rotateX(0) rotateY(0)');
+});
+
+function scrollTo(id){
+    document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+</script>
+
+</body>
+</html>
